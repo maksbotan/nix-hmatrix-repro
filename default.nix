@@ -1,6 +1,6 @@
 let 
   # Fetch the latest haskell.nix and import its default.nix 
-  haskellNix = import (builtins.fetchTarball https://github.com/input-output-hk/haskell.nix/archive/master.tar.gz) {};
+  haskellNix = import (builtins.fetchTarball https://github.com/serokell/haskell.nix/archive/kirelagin/darwin-so.tar.gz) {};
   # haskell.nix provides access to the nixpkgs pins which are used by our CI, hence
   # you will be more likely to get cache hits when using these. 
   # But you can also just use your own, e.g. '<nixpkgs>'
@@ -10,7 +10,7 @@ let
   nixpkgsArgs = haskellNix.nixpkgsArgs;
 in
 { pkgs ? import nixpkgsSrc nixpkgsArgs
-, haskellCompiler ? "ghc883"
+, haskellCompiler ? "ghc865"
 }:
 # 'cabalProject' generates a package set based on a cabal.project (and the corresponding .cabal files)
 pkgs.haskell-nix.cabalProject {
